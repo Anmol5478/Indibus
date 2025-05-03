@@ -16,5 +16,14 @@ const userSchema= mongoose.Schema({
     }
 })
 
+
+const companySchema= mongoose.Schema({
+    title: String,
+    company: String,
+    location: String,
+    description: String
+});
+
 module.exports=mongoose.model("user", userSchema);
+module.exports=mongoose.model("company", companySchema);
 

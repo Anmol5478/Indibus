@@ -45,6 +45,25 @@ app.post("/apply", upload.single('resume'), async (req, res) => {
     }
 });
 
+app.post("/jobpost", async(req,res)=>{
+    try {
+        const { title, company, location, description } = req.body;
+
+        const createdJob = await userModel.create({
+            title,
+            company,
+            location,
+            description
+        });
+
+        res.send(createdJob);
+        console.log(req.file)
+        res.redirect("/")
+    } catch (err) {
+        res.status(500).send("Error: " + err.message);
+    }
+});
+
 app.get('/users', async (req, res) => {
     const users = await User.find();
     res.render('users', { users });
